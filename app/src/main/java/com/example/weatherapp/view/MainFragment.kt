@@ -4,12 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.weatherapp.R
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.weatherapp.databinding.FragmentMainBinding
+import com.example.weatherapp.viewmodel.MainViewModel
 
-class MainFragment:Fragment () {
+class MainFragment : Fragment() {
 
-    companion object{
+    private var _binding: FragmentMainBinding? = null
+    private val binding: FragmentMainBinding
+
+        get() {
+            return _binding!!
+        }
+
+    private lateinit var viewModel: MainViewModel
+
+    companion object {
         fun newInstance() = MainFragment()
     }
 
@@ -18,6 +31,23 @@ class MainFragment:Fragment () {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel.getLiveDate().observe(viewLifecycleOwner, Observer<Any> {
+            Toast.makeText(context, "Done", Toast.LENGTH_LONG).show()
+        })
+        viewModel.getADtaFromRemoteSource()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
