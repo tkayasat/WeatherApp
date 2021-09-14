@@ -8,27 +8,25 @@ import java.lang.Thread.sleep
 class MainViewModel(
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
     private val repositoryImplementation: RepositoryImplementation = RepositoryImplementation()
-) :
-    ViewModel() {
+) : ViewModel() {
 
     fun getLiveDate() = liveDataToObserve
 
-    fun getWeatherFromLocalSourceWorld() {
-        getDataFromLocalSource(false)
-    }
+    fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(false)
 
-    fun getWeatherFromLocalSourceRussian() {
-        getDataFromLocalSource(true)
-    }
+    fun getWeatherFromLocalSourceRussian() = getDataFromLocalSource(true)
 
     private fun getDataFromLocalSource(isRussian: Boolean) {
-        liveDataToObserve.postValue(AppState.Loading)
-        Thread {
-            sleep(500)
-            if (isRussian)
-                liveDataToObserve.postValue(AppState.Success(repositoryImplementation.getWeatherFromLocalStorageRussian()))
-            else
-                liveDataToObserve.postValue(AppState.Success(repositoryImplementation.getWeatherFromLocalStorageWorld()))
-        }.start()
+        with(liveDataToObserve) {
+
+            postValue(AppState.Loading)
+            Thread {
+                sleep(500)
+                if (isRussian)
+                    postValue(AppState.Success(repositoryImplementation.getWeatherFromLocalStorageRussian()))
+                else
+                    postValue(AppState.Success(repositoryImplementation.getWeatherFromLocalStorageWorld()))
+            }.start()
+        }
     }
 }
