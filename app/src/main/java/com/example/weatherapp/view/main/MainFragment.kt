@@ -1,7 +1,6 @@
 package com.example.weatherapp.view.main
 
 import android.os.Bundle
-import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -93,7 +92,6 @@ class MainFragment : Fragment(), OnItemViewClickListener {
                 ) {
                     if (isDataSetRussian) {
                         viewModel.getWeatherFromLocalSourceRussian()
-
                     } else {
                         viewModel.getWeatherFromLocalSourceWorld()
                     }
@@ -102,36 +100,30 @@ class MainFragment : Fragment(), OnItemViewClickListener {
         }
     }
 
-    fun View.showSnackbarWithoutAction(view: View, stringId: Int, length: Int) {
+    private fun View.showSnackbarWithoutAction(view: View, stringId: Int, length: Int) {
         Snackbar.make(binding.root, getString(stringId), length).show()
     }
 
-    fun View.showSnackbarWithAction(
-        view: View,
-        stringResultText: Int,
-        length: Int,
-        stringActionText: Int,
+    private fun View.showSnackbarWithAction(
+        view: View, stringResultText: Int, length: Int, stringActionText: Int,
         listener: View.OnClickListener
     ) {
         Snackbar.make(view, getString(stringResultText), length)
             .setAction(getString(stringResultText), listener).show()
 
-       /* override fun onDestroy() {
-            super.onDestroy()
-            _binding = null
-        }
+    }
 
-        override fun onItemClick(weather: Weather) {
-            val bundle = Bundle()
-            bundle.putParcelable(DetailsFragment.BUNDLE_WEATHER_KEY, weather)
-            requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, DetailsFragment.newInstance(bundle))
-                .addToBackStack("")
-                .commit()
-        }*/
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     override fun onItemClick(weather: Weather) {
-
+        val bundle = Bundle()
+        bundle.putParcelable(DetailsFragment.BUNDLE_WEATHER_KEY, weather)
+        requireActivity().supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container, DetailsFragment.newInstance(bundle))
+            .addToBackStack("")
+            .commit()
     }
 }
