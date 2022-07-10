@@ -53,5 +53,21 @@
             android:text="Handler Thread"
             android:textSize="@dimen/feels_like_text_size" />
 
+        <Button
+            android:id="@+id/btnService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Service"
+            android:textSize="@dimen/feels_like_text_size" />
+
+        <Button
+            android:id="@+id/btnServiceBroadcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Service+Broadcast"
+            android:textSize="@dimen/feels_like_text_size" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
