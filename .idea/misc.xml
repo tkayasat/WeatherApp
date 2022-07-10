@@ -12,6 +12,11 @@
         <entry key="..\:/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.18478260869565216" />
         <entry key="..\:/WeatherApp/app/src/main/res/layout/activity_main_webview.xml" value="0.28125" />
         <entry key="..\:/WeatherApp/app/src/main/res/layout/fragment_details.xml" value="0.33" />
+        <entry key="..\:/WeatherApp/app/src/main/res/layout/fragment_threads.xml" value="0.19322916666666667" />
+        <entry key="..\:/WeatherApp/app/src/main/res/layout/fragments_threads.xml" value="0.19322916666666667" />
+        <entry key="..\:/WeatherApp/app/src/main/res/layout/hbth.xml" value="0.19322916666666667" />
+        <entry key="..\:/WeatherApp/app/src/main/res/menu/main_screen_menu.xml" value="0.19322916666666667" />
+        <entry key="..\:/WeatherApp/app/src/main/res/menu/main_screen_menus.xml" value="0.19322916666666667" />
       </map>
     </option>
   </component>
