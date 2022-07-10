@@ -11,7 +11,7 @@ import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentMainBinding
 import com.example.weatherapp.domain.Weather
 import com.example.weatherapp.view.OnItemViewClickListener
-import com.example.weatherapp.view.datails.DetailsFragment
+import com.example.weatherapp.view.details.DetailsFragment
 import com.example.weatherapp.viewmodel.AppState
 import com.example.weatherapp.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar

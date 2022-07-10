@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <service android:name=".hw6.MainService" />
-
+        <service android:name=".view.details.DetailsService" />
         <receiver
             android:name=".hw6.MainBroadcastReceiver"
             android:exported="true">
