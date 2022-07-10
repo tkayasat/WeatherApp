@@ -7,5 +7,6 @@
     <string name="feels_like_label">Ощущается как</string>
     <string name="success">Success</string>
     <string name="action_success">Action Success</string>
+    <string name="gb">https://geekbrains.ru/</string>
 
 </resources>

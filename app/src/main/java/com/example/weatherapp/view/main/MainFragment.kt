@@ -11,6 +11,7 @@ import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentMainBinding
 import com.example.weatherapp.domain.Weather
 import com.example.weatherapp.view.OnItemViewClickListener
+import com.example.weatherapp.view.datails.DetailsFragment
 import com.example.weatherapp.viewmodel.AppState
 import com.example.weatherapp.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -37,11 +38,10 @@ class MainFragment : Fragment(), OnItemViewClickListener {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -106,11 +106,10 @@ class MainFragment : Fragment(), OnItemViewClickListener {
 
     private fun View.showSnackbarWithAction(
         view: View, stringResultText: Int, length: Int, stringActionText: Int,
-        listener: View.OnClickListener
+        listener: View.OnClickListener,
     ) {
         Snackbar.make(view, getString(stringResultText), length)
             .setAction(getString(stringResultText), listener).show()
-
     }
 
     override fun onDestroy() {

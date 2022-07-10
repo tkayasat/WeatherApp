@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:clickable="true"
     android:focusable="true"
     android:background="#FFFFFF">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/mainView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/cityName"
@@ -78,7 +81,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/feelsLikeLabel"
             tools:text="+10" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
 
     <FrameLayout
         android:id="@+id/loadingLayout"
@@ -94,4 +98,5 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
     </FrameLayout>
-</FrameLayout>
+</LinearLayout>
+
