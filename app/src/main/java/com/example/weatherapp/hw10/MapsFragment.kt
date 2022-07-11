@@ -1,6 +1,7 @@
 package com.example.weatherapp.hw10
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Geocoder
@@ -25,6 +26,7 @@ class MapsFragment : Fragment() {
 
     private val markers: ArrayList<Marker> = arrayListOf()
 
+    @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
 
