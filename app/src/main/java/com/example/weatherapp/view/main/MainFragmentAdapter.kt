@@ -12,7 +12,7 @@ import com.example.weatherapp.view.OnItemViewClickListener
 
 class MainFragmentAdapter : RecyclerView.Adapter<MainFragmentAdapter.MainFragmentViewHolder>() {
 
-    private var weatherData: List<Weather?> = listOf()
+    private var weatherData: List<Weather> = ArrayList()
 
     private lateinit var listener: OnItemViewClickListener
 
