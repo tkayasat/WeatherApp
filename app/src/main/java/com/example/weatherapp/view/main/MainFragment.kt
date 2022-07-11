@@ -149,7 +149,6 @@ class MainFragment : Fragment(), OnItemViewClickListener, TextView.OnEditorActio
             if (it.city.toString().contains(binding.etCityFilter.text.toString(), true))
                 filteredWeatherData.add(it)
         }
-
         return filteredWeatherData
     }
 }
