@@ -24,6 +24,7 @@ android {
     buildFeatures{
             viewBinding true
     }
+
     buildTypes.each{
         Properties properties = new Properties()
         properties.load(project.rootProject.file("apikey.properties").newDataInputStream())
@@ -32,6 +33,14 @@ android {
     }
 
     buildTypes {
+        beta {
+            initWith debug
+            versionNameSuffix "-beta"
+        }
+
+        debug {
+            versionNameSuffix "-debug"
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

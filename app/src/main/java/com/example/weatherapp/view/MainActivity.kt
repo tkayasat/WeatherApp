@@ -10,9 +10,12 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import com.example.weatherapp.R
+import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.history.HistoryFragment
+import com.example.weatherapp.hw10.MapsFragment
+import com.example.weatherapp.hw6.ThreadsFragment
 import com.example.weatherapp.view.main.MainFragment
-import com.google.android.gms.maps.MapFragment.newInstance
+import com.google.android.gms.maps.MapFragment
 import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
@@ -25,12 +28,14 @@ class MainActivity : AppCompatActivity() {
         private const val CHANNEL_ID_2 = "channel_id_2"
     }
 
+
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         if (savedInstanceState == null)
-            supportFragmentManager
-                .beginTransaction()
+            supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, MainFragment.newInstance()).commit()
         FirebaseMessaging.getInstance().token.addOnCompleteListener { it ->
             if (it.isSuccessful) {
@@ -80,27 +85,40 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.main_screen_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_open_fragment_history -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, HistoryFragment.newInstance())
-                    .addToBackStack("")
-                    .commit()
+            R.id.action_open_fragment_threads -> {
+                showFragment(ThreadsFragment.newInstance(), false)
                 true
             }
-            R.id.action_open_map -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, newInstance())
-                    .addToBackStack("")
-                    .commit()
+
+            R.id.action_open_fragment_history -> {
+                showFragment(HistoryFragment.newInstance(), true)
+                true
+            }
+
+            R.id.action_open_fragment_content_provider -> {
+                showFragment(ContentProviderFragment.newInstance(), true)
+                true
+            }
+
+            R.id.action_open__fragment_menu_google_maps -> {
+                showFragment(MapsFragment.newInstance(), true)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showFragment(fragment: MapFragment, addToBackStack: Boolean) {
+        val tran = supportFragmentManager.beginTransaction()
+        if (addToBackStack) {
+            tran.addToBackStack("")
+        }
+        tran.replace(R.id.fragment_container, fragment).commitAllowingStateLoss()
     }
 }
