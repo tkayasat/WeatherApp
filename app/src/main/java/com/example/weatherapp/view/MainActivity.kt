@@ -1,7 +1,7 @@
 package com.example.weatherapp.view
 
-import android.content.Intent
 import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -14,23 +14,22 @@ import com.example.weatherapp.view.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val receiver = MainBroadcastReceiver()
-
     lateinit var binding: ActivityMainBinding
+
+    private val mainBroadcastReceiver = MainBroadcastReceiver()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setContentView(R.layout.activity_main)
         if (savedInstanceState == null)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, MainFragment.newInstance()).commit()
-
-        registerReceiver(receiver, IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED))
-        registerReceiver(receiver, IntentFilter("myaction"))
-
-        val mySendIntent = Intent("myaction")
-        sendBroadcast(mySendIntent)
+        registerReceiver(
+            mainBroadcastReceiver,
+            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

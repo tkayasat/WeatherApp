@@ -12,7 +12,7 @@ import com.example.weatherapp.databinding.FragmentMainBinding
 import com.example.weatherapp.domain.Weather
 import com.example.weatherapp.view.OnItemViewClickListener
 import com.example.weatherapp.view.details.DetailsFragment
-import com.example.weatherapp.viewmodel.AppState
+import com.example.weatherapp.viewmodel.MainState
 import com.example.weatherapp.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -62,25 +62,25 @@ class MainFragment : Fragment(), OnItemViewClickListener {
         }
 
         viewModel.getLiveDate()
-            .observe(viewLifecycleOwner, Observer<AppState> { appState: AppState ->
-                renderData(appState)
+            .observe(viewLifecycleOwner, Observer<MainState> { mainState: MainState ->
+                renderData(mainState)
             })
         viewModel.getWeatherFromLocalSourceRussian()
     }
 
-    private fun renderData(appState: AppState) {
-        when (appState) {
-            is AppState.Error -> {
+    private fun renderData(mainState: MainState) {
+        when (mainState) {
+            is MainState.Error -> {
                 binding.mainFragmentLoadingLayout.visibility = View.GONE
-                val throwable = appState.error
+                val throwable = mainState.error
                 Snackbar.make(binding.root, "ERROR $throwable", Snackbar.LENGTH_LONG).show()
             }
-            AppState.Loading -> {
+            MainState.Loading -> {
                 binding.mainFragmentLoadingLayout.visibility = View.VISIBLE
             }
-            is AppState.Success -> {
+            is MainState.Success-> {
                 binding.mainFragmentLoadingLayout.visibility = View.GONE
-                val weather = appState.weatherDate
+                val weather = mainState.weatherData
                 adapter.setWeather(weather)
                 binding.root.showSnackbarWithoutAction(
                     binding.root,

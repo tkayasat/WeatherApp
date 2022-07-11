@@ -21,7 +21,7 @@ const val THREADS_FRAGMENT_BROADCAST_EXTRA = "THREADS_FRAGMENT_EXTRA"
 
 class ThreadsFragment : Fragment() {
 
-    private val receiver: BroadcastReceiver = object : BroadcastReceiver(){
+    private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             binding.mainContainer.addView(TextView(context).apply {
                 val message = intent?.getStringExtra(THREADS_FRAGMENT_BROADCAST_EXTRA)
@@ -42,7 +42,7 @@ class ThreadsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentThreadsBinding.inflate(inflater, container, false)
         return binding.root
@@ -60,7 +60,6 @@ class ThreadsFragment : Fragment() {
     }
 
     private fun firstPart() {
-        // DANGER
         binding.button.setOnClickListener {
             val timer = binding.editText.text.toString().toInt()
             startCalculations(timer)

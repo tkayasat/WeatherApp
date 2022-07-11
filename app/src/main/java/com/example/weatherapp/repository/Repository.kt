@@ -7,5 +7,4 @@ interface Repository {
     fun getWeatherFromLocalSource(): Weather
     fun getWeatherFromLocalStorageRussian(): List<Weather>
     fun getWeatherFromLocalStorageWorld(): List<Weather>
-
 }
